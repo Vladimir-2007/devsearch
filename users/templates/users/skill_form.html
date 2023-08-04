@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main class='formPage my-xl'>
+  <div class='content-box'>
+    <div class='formWrapper'>
+
+      {% if page == 'create' %}
+      <h4 style='text-align: center;'>Создать навык</h4>
+      {% endif %}
+
+      {% if page == 'update' %}
+      <h4 style='text-align: center;'>Обновить навык</h4>
+      {% endif %}
+
+      <a class='backButton' href='{% url "account" %}'><i class='fa fa-angle-left'></i></a>
+      <br>
+      <form class='form' action='' method='post'>
+        {% csrf_token %}
+        {% for field in form %}
+        <div class='form__field'>
+          <label>{{field.label}}:</label>
+          {{field}}
+        </div>
+        {% endfor %}
+        <input class='btn btn--sub btn--lg  my-md' type='submit' value='Обновить' />
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}

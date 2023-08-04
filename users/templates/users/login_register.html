@@ -1,0 +1,93 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+    {% if page == 'register' %}
+        <div class='auth'>
+            <div class='card'>
+                <div class='auth__header text-center'>
+                    <a href='/'>
+                        <img src='{% static "images/icon.svg" %}' alt='icon'/>
+                    </a>
+                    <h3>Регистрация</h3>
+                    <p>Создание нового пользователя</p>
+                </div>
+
+                <form action='{% url "register" %}' method='post' class='form auth__form'>
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class='form__field'>
+                            <label for='formInput#text'>{{ field.label }}</label>
+                            {{ field }}
+
+                            <!--        {% if field.help_text %}-->
+                                <!--        <small>{{field.help_text}}</small>-->
+                                <!--        {% endif %}-->
+
+                            {% for error in field.errors %}
+                                <p style='color: red'>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    <div class='auth__actions'>
+                        <input class='btn btn--sub btn--lg' type='submit' value='Регистрация'/>
+                    </div>
+                </form>
+                <div class='auth__alternative'>
+                    <p>Уже зарегистрированы?</p>
+                    <a href='{% url "login" %}'>Войти</a>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class='auth'>
+            <div class='card'>
+                <div class='auth__header text-center'>
+                    <a href='/'>
+                        <img src='{% static "images/icon.svg" %}' alt='icon'/>
+                    </a>
+                    <h3>Вход</h3>
+                    <p>Добро пожаловать!</p>
+                </div>
+
+                <form action='' method='post' class='form auth__form'>
+                    {% csrf_token %}
+                    <div class='form__field'>
+                        <label for='formInput#text'>Имя пользователя: </label>
+                        <input
+                                class='input input--text'
+                                id='formInput#text'
+                                type='text'
+                                name='username'
+                                placeholder='Введите ваше имя пользователя...'
+                        />
+                    </div>
+
+                    <div class='form__field'>
+                        <label for='formInput#passowrd'>Пароль: </label>
+                        <input
+                                class='input input--password'
+                                id='formInput#passowrd'
+                                type='password'
+                                name='password'
+                                placeholder='••••••••'
+                        />
+                    </div>
+                    <div class='auth__actions'>
+                        <input class='btn btn--sub btn--lg' type='submit' value='Войти'/>
+                        <a href='{% url "reset_password" %}'>Забыли пароль?</a>
+                    </div>
+                </form>
+                <div class='auth__alternative'>
+                    <p>Еще не зарегистрированы?</p>
+                    <a href='{% url "register" %}'>Зарегистрировать</a>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock content %}

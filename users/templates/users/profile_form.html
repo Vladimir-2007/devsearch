@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main class='formPage my-xl'>
+
+  <div class='content-box'>
+    <div class='formWrapper'>
+      <h4 style='text-align: center'>Редактировать Аккаунт</h4>
+      <a class='backButton' href='{% url "account" %}'><i class='fa fa-angle-left'></i></a>
+      <br>
+      <form action='{% url "edit-account" %}' method='post' enctype='multipart/form-data'>
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class='form__field'>
+          <label >{{field.label}}:</label>
+          {{field}}
+        </div>
+        {% endfor %}
+
+
+        <input class='btn btn--sub btn--lg  my-md' type='submit' value='Изменить' />
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock content %}

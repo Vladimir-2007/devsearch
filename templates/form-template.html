@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class='formPage my-xl'>
+  <div class='content-box'>
+    <div class='formWrapper'>
+      <a class='backButton' href='#'><i class='fa fa-angle-left'></i></a>
+      <br>
+
+      <form class='form' method='POST'>
+        <div class='form__field'>
+          <label for='formInput#text'>Текст: </label>
+          <input class='input input--text' id='formInput#text' type='text' name='text'
+                 placeholder='Введите текст' />
+        </div>
+        <input class='btn btn--sub btn--lg  my-md' type='submit' value='Ввести' />
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+

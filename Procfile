@@ -1,0 +1,1 @@
+web: gunicorn svemsearch.wsgi --log-file-

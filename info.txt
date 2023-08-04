@@ -1,0 +1,17 @@
+Desktop % virtualenv env
+        % source/bin/activate
+        % source/bin/deactivate
+
+pip install django
+django-admin
+django startproject [name]
+django startapp [name]
+
+python createsuperuser
+python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+
+
+pip freeze > requirements.txt
+pip install -r requirements.txt
